@@ -1,0 +1,164 @@
+
+/* ===========================
+   Online Quiz – Global Styles
+   Color palette (max 3 colors):
+   - Text: #222222
+   - Accent: #2e7d32 (green)
+   - Background: #ffffff
+   =========================== */
+/* Global Styles */
+
+
+
+:root {
+  --text: #222222;
+  --accent: #2e7d32;
+  --bg: #ffffff;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+}
+
+.site-header, .site-footer {
+  border-bottom: 1px solid #ddd;
+}
+
+.site-footer { border-top: 1px solid #ddd; border-bottom: none; }
+
+/* End Global Styles */
+
+/* Index Page style */
+
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  padding: 0.5rem 1rem;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  left: 0.5rem;
+}
+
+/* Layout */
+.container {
+  width: min(960px, 92vw);
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.brand-mark {
+  width: 28px;
+  height: 28px;
+  fill: var(--accent);
+}
+
+.brand-text {
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+
+.site-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 0.75rem;
+  padding: 0;
+  margin: 0;
+}
+
+.site-nav a {
+  text-decoration: none;
+  color: var(--text);
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.5rem;
+}
+
+.site-nav a[aria-current="page"],
+.site-nav a:hover,
+.site-nav a:focus {
+  outline: 2px solid transparent;
+  background: rgba(46, 125, 50, 0.12);
+}
+
+/* Hero/Sections */
+.hero {
+  padding: 2rem 0 1rem;
+}
+
+.cta {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.features .feature-list {
+  padding-left: 1rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 0.7rem 1rem;
+  border-radius: 0.6rem;
+  border: 2px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.btn:hover, .btn:focus {
+  filter: brightness(0.95);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--accent);
+}
+
+.btn-outline:hover, .btn-outline:focus {
+  background: rgba(46, 125, 50, 0.08);
+}
+/* End Index Page Styles */
+
+
+

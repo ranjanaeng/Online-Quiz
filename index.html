@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Online Quiz – Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Accessible, responsive online quiz with randomized questions and instant results.">
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Online Quiz Home">
+        <!-- Inline SVG (counts as a graphic) -->
+        <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 5v6h5v2h-7V7h2z"></path>
+        </svg>
+        <span class="brand-text">Online Quiz</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li><a href="howto.html">How To</a></li>
+          <li><a href="quiz.html">Start Quiz</a></li>
+          <li><a href="results.html">Results</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container" role="main">
+    <section class="hero" aria-labelledby="welcome-title">
+      <h1 id="welcome-title">Test Your Knowledge</h1>
+      <p>Answer randomized questions across multiple formats and get instant feedback at the end. Built with accessibility and responsive design in mind.</p>
+      <div class="cta">
+        <a class="btn" href="quiz.html">Start Quiz</a>
+        <a class="btn btn-outline" href="howto.html">How It Works</a>
+      </div>
+    </section>
+
+    <section aria-labelledby="features-title" class="features">
+      <h2 id="features-title">Features</h2>
+      <ul class="feature-list">
+        <li><strong>Randomized</strong> questions every attempt</li>
+        <li><strong>Multiple types</strong>: multiple-choice, true/false, fill-in-the-blank</li>
+        <li><strong>Accessible</strong> keyboard-first controls & high contrast</li>
+        <li><strong>Responsive</strong> layout for mobile, tablet, and desktop</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Online Quiz. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    'use strict';
+    (function () {
+      var y = document.getElementById('year');
+      if (y) { y.textContent = new Date().getFullYear(); }
+    }());
+  </script>
+</body>
+</html>

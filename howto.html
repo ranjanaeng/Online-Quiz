@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Online Quiz – How To</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Instructions on how to take the online quiz.">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Online Quiz Home">
+        <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 5v6h5v2h-7V7h2z"></path>
+        </svg>
+        <span class="brand-text">Online Quiz</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="howto.html" aria-current="page">How To</a></li>
+          <li><a href="quiz.html">Start Quiz</a></li>
+          <li><a href="results.html">Results</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <h1>How to Take the Quiz</h1>
+
+    <ol class="steps">
+      <li>Click <strong>Start Quiz</strong>.</li>
+      <li>Read the question and select your answer:
+        <ul>
+          <li><strong>Multiple-choice / True–False:</strong> choose one option.</li>
+          <li><strong>Fill‑in‑the‑blank:</strong> type your answer (case-insensitive).</li>
+        </ul>
+      </li>
+      <li>Use the <strong>Next</strong> button to go to the following question.</li>
+      <li>On the last question, click <strong>Submit</strong> to see your results.</li>
+      <li>The results page shows your score, a breakdown, and explanations.</li>
+    </ol>
+
+    <section aria-labelledby="accessibility-title">
+      <h2 id="accessibility-title">Accessibility Notes</h2>
+      <ul>
+        <li>All controls are keyboard accessible (Tab/Shift+Tab, Arrow keys for radios).</li>
+        <li>High-contrast color palette for readability.</li>
+        <li>Alt text for non-text graphics and semantic landmarks (<code>header</code>, <code>main</code>, <code>nav</code>, <code>footer</code>).</li>
+      </ul>
+    </section>
+
+    <p>
+      Ready? <a class="btn" href="quiz.html" aria-label="Start the quiz now">Start Quiz</a>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Online Quiz. All rights reserved.</p>
+    </div>
+  </footer>
+  <script src="scripts/script.js" defer></script>
+</body>
+</html>

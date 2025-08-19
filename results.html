@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Online Quiz – Results</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Your quiz results and explanations.">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Online Quiz Home">
+        <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 5v6h5v2h-7V7h2z"></path>
+        </svg>
+        <span class="brand-text">Online Quiz</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="howto.html">How To</a></li>
+          <li><a href="quiz.html">Start Quiz</a></li>
+          <li><a href="results.html" aria-current="page">Results</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <h1>Your Results</h1>
+
+    <div id="summary" class="summary" aria-live="polite">Loading results…</div>
+
+    <section aria-labelledby="breakdown-title" class="breakdown">
+      <h2 id="breakdown-title">Answer Breakdown</h2>
+      <ol id="breakdown-list" class="breakdown-list"></ol>
+    </section>
+
+    <p class="results-cta">
+      <a class="btn" href="quiz.html">Retake Quiz</a>
+      <a class="btn btn-outline" href="index.html">Back to Home</a>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Online Quiz. All rights reserved.</p>
+    </div>
+  </footer>
+  <script src="scripts/script.js" defer></script>
+</body>
+</html>

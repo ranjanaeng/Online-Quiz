@@ -1,14 +1,16 @@
-/* quiz.js
-   Handles quiz flow: randomization, rendering, input capture, scoring, and results.
-   Passes common linters (use strict, no unused globals).
-*/
-'use strict';
+// quiz.js
+// Handles quiz logic, user navigation, scoring
+
+
 /* global document, window, localStorage, QUIZ_QUESTIONS */
 
 (function () {
+  'use strict';
+  
+  // Load questions from global variable set in questions.js
   var allQuestions = Array.isArray(window.QUIZ_QUESTIONS) ? window.QUIZ_QUESTIONS.slice() : [];
   if (!allQuestions.length) {
-    // Defensive: if questions failed to load, show a simple message.
+    // if questions failed to load, show message.
     var qText = document.getElementById('question-text');
     if (qText) { qText.textContent = 'No questions available. Please try again later.'; }
     var nextBtn = document.getElementById('next-btn');
@@ -16,16 +18,17 @@
     return;
   }
 
-  // Shuffle helper (Fisher–Yates)
-  function shuffle(arr) {
-    var a = arr.slice();
-    for (var i = a.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var tmp = a[i];
-      a[i] = a[j];
-      a[j] = tmp;
+  // Shuffle question array
+  // Using Fisher-Yates (Knuth) Shuffle
+ function shuffle(arr) {
+    var shuffledArray = arr.slice();
+    for (var currentIndex = shuffledArray.length - 1; currentIndex > 0; currentIndex--) {
+      var randomIndex = Math.floor(Math.random() * (currentIndex + 1));
+      var tmp = shuffledArray[currentIndex];
+      shuffledArray[currentIndex] = shuffledArray[randomIndex];
+      shuffledArray[randomIndex] = tmp;
     }
-    return a;
+    return shuffledArray;
   }
 
   // Randomize question order once per session
@@ -53,7 +56,6 @@
     recordAnswer();
     currentIndex += 1;
     renderQuestion();
-    announce('Moved to next question.');
   });
 
   submitBtnEl.addEventListener('click', function () {
@@ -92,10 +94,10 @@
       finishQuiz();
       return;
     }
-    
-    var q = getCurrent();
 
-    if (!q) {
+    var currentQuestion = getCurrent();
+
+    if (!currentQuestion) {
       // No more questions in the pool
       finishQuiz();
       return;
@@ -105,11 +107,11 @@
     progressTextEl.textContent = 'Question ' + (currentIndex + 1) + ' of ' + total;
 
     // Question text
-    questionTextEl.textContent = q.question;
+    questionTextEl.textContent = currentQuestion.question;
 
     // Reset controls
     optionsContainer.innerHTML = '';
-    nextBtnEl.disabled = true;
+    nextBtnEl.disabled = false;
     submitBtnEl.disabled = true;
 
     // Show correct controls
@@ -120,12 +122,13 @@
     // Keep Next button disabled on last question
     if (isLast) {
       nextBtnEl.disabled = true;
+      submitBtnEl.disabled = false;
     }
 
     // Render input based on type
-    if (q.type === 'mcq' || q.type === 'boolean') {
-      renderOptions(shuffle(q.options || []));
-    } else if (q.type === 'text') {
+    if (currentQuestion.type === 'mcq' || currentQuestion.type === 'boolean') {
+      renderOptions(shuffle(currentQuestion.options || []));
+    } else if (currentQuestion.type === 'text') {
       renderTextInput();
     } else {
       // Fallback: treat as text
@@ -136,9 +139,17 @@
   function renderOptions(options) {
     var groupName = 'q' + currentIndex;
     var isLast = currentIndex === QUIZ_LENGTH - 1;
-    
-    for (var i = 0; i < options.length; i++) {
-      var id = groupName + '-opt-' + i;
+
+   function handleOptionChange() {
+      if (!isLast) {
+        nextBtnEl.disabled = false;
+      } else {
+        submitBtnEl.disabled = false;
+      }
+    }
+
+    for (var optionIndex = 0; optionIndex < options.length; optionIndex++) {
+      var id = groupName + '-opt-' + optionIndex;
       var wrapper = document.createElement('label');
       wrapper.className = 'option';
       wrapper.setAttribute('for', id);
@@ -147,18 +158,13 @@
       input.type = 'radio';
       input.name = groupName;
       input.id = id;
-      input.value = options[i];
+      input.value = options[optionIndex];
       input.required = true;
 
-      input.addEventListener('change', function () {
-        if (!isLast) {
-          nextBtnEl.disabled = false;
-        }
-        submitBtnEl.disabled = false;
-      });
+      input.addEventListener('change', handleOptionChange);
 
       var text = document.createElement('span');
-      text.textContent = options[i];
+      text.textContent = options[optionIndex];
 
       wrapper.appendChild(input);
       wrapper.appendChild(text);
@@ -175,27 +181,24 @@
     input.setAttribute('aria-label', 'Type your answer');
     input.autocomplete = 'off';
     input.addEventListener('input', function () {
-      // Enable next/submit if non-empty (still allow blank if user wants)
       if (!isLast) {
-        nextBtnEl.disabled = false;
-      }
-      submitBtnEl.disabled = false;
+          nextBtnEl.disabled = false;
+        }
     });
     optionsContainer.appendChild(input);
     // Ensure buttons are enabled appropriately
     if (!isLast) {
-      nextBtnEl.disabled = false;
-    }
-    submitBtnEl.disabled = false;
+          nextBtnEl.disabled = false;
+        }
   }
 
   function recordAnswer() {
-    var q = getCurrent();
-    if (!q) { return; }
+    var currentQuestion = getCurrent();
+    if (!currentQuestion) { return; }
 
     var userAnswer = '';
 
-    if (q.type === 'mcq' || q.type === 'boolean') {
+    if (currentQuestion.type === 'mcq' || currentQuestion.type === 'boolean') {
       var selected = optionsContainer.querySelector('input[type="radio"]:checked');
       userAnswer = selected ? selected.value : '';
     } else {
@@ -203,34 +206,34 @@
       userAnswer = input ? input.value.trim() : '';
     }
 
-    var correctAnswer = q.answer;
+    var correctAnswer = currentQuestion.answer;
     var correct;
 
-    if (q.type === 'text') {
+    if (currentQuestion.type === 'text') {
       correct = userAnswer.toLowerCase() === String(correctAnswer).toLowerCase();
     } else {
       correct = userAnswer === correctAnswer;
     }
 
     answers.push({
-      question: q.question,
+      question: currentQuestion.question,
       correctAnswer: String(correctAnswer),
       userAnswer: String(userAnswer),
       correct: correct,
-      explanation: q.explanation || ''
+      explanation: currentQuestion.explanation || ''
     });
   }
 
   function finishQuiz() {
     // Calculate score
     var score = 0;
-    for (var i = 0; i < answers.length; i++) {
-      if (answers[i].correct) { score += 1; }
+    for (var currentIndex = 0; currentIndex < answers.length; currentIndex++) {
+      if (answers[currentIndex].correct) { score += 1; }
     }
 
     var result = {
       score: score,
-      total: QUIZ_LENGTH, // Use the same constant for consistency
+      total: QUIZ_LENGTH, 
       detail: answers
     };
 

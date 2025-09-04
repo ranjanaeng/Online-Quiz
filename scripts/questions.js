@@ -3,12 +3,13 @@
    - type: "mcq" | "boolean" | "text"
    - question: string
    - options: array (for mcq/boolean)
-   - answer: string (exact for mcq/boolean; text answers compared case-insensitively)
+   - answer: string (text answers compared case-insensitively)
    - explanation: string
 */
-'use strict';
+
 /* global window */
 (function (win) {
+  'use strict';
   var questions = [
     {
       type: 'mcq',
@@ -79,12 +80,6 @@
       explanation: 'push() appends to the end; pop() removes from the end.'
     },
     {
-      type: 'text',
-      question: 'What is the primary purpose of the <head> element in HTML?',
-      answer: 'To contain metadata and links to scripts/styles',
-      explanation: '<head> contains metadata, links to stylesheets, and scripts.'
-    },
-    {
       type: 'mcq',
       question: 'Which CSS property controls the text size?',
       options: ['font-size', 'text-size', 'font-style', 'text-style'],
@@ -130,11 +125,6 @@
       answer: '<tr>',
       explanation: '<tr> defines a row in an HTML table; <td> defines a cell.'
     },
-    { type: 'text',
-      question: 'What is the purpose of the <title> element in HTML?',
-      answer: 'To define the title of the document',
-      explanation: '<title> sets the document title, displayed in the browser tab.'
-    },
     { type: 'mcq',
       question: 'Which HTML element is used to define a table header?',
       options: ['<th>', '<tr>', '<td>', '<table>'],
@@ -153,11 +143,6 @@
       answer: 'color',
       explanation: 'color sets the text color in CSS.'
       },
-    { type: 'text',
-      question: 'What is the purpose of the <meta> tag in HTML?',
-      answer: 'To provide metadata about the document',
-      explanation: '<meta> provides metadata like character set, author, and viewport settings.'
-    },
     { type: 'mcq',
       question: 'Which HTML element is used to define an unordered list?',
       options: ['<ul>', '<ol>', '<li>', '<list>'],
@@ -175,11 +160,6 @@
       options: ['<form>', '<input>', '<textarea>', '<button>'],
       answer: '<form>',
       explanation: '<form> defines a form for user input; <input> is used for individual fields.'
-    },
-    { type: 'text',
-      question: 'What is the purpose of the <link> element in HTML?',
-      answer: 'To link external resources like stylesheets',
-      explanation: '<link> links external resources, typically stylesheets, to the document.'
     },
     { type: 'mcq',
       question: 'Which HTML element is used to define a line break?',
@@ -199,17 +179,30 @@
       answer: '<pre>',
       explanation: '<pre> defines preformatted text, preserving whitespace and line breaks; <code > is used for inline code snippets.'
     },
-    { type: 'text',
-      question: 'What is the purpose of the <style> element in HTML?',
-      answer: 'To define internal CSS styles for the document',
-      explanation: '<style> defines internal CSS styles, allowing you to style the document without external stylesheets.'
-    },
     { type: 'mcq',
       question: 'Which HTML element is used to define a block of text that is quoted from another source?',
       options: ['<blockquote>', '<cite>', '<q>', '<quote>'],
       answer: '<blockquote>',
       explanation: '<blockquote> is used for longer quotations, while <q> is for shorter, inline quotes.'
-    }
+    },
+    { type: 'boolean',
+      question: 'The <aside> element is used to define content that is tangentially related to the main content.',
+      options: ['True', 'False'],
+      answer: 'True',
+      explanation: '<aside> defines content aside from the main content, like sidebars or pull quotes.'
+    },
+    { type: 'mcq',
+      question: 'Which HTML element is used to define a caption for a table?',
+      options: ['<caption>', '<title>', '<header>', '<footer>'],
+      answer: '<caption>',
+      explanation: '<caption> defines a title or caption for a table, typically displayed above it.'
+    },  
+    { type: 'boolean',
+      question: 'The <header> element is used to define the header of a document or section.',
+      options: ['True', 'False'],
+      answer: 'True',
+      explanation: '<header> defines the header, typically containing introductory content or navigation links.'
+    } 
   ];
 
   // Expose to window in a controlled name

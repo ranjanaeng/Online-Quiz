@@ -58,24 +58,29 @@ This is a simple **online quiz web application** built with **HTML, CSS, and Jav
 ## 📂 Project Structure
 ```
 Online-Quiz/
+├── 📁 screenshots/
+│   ├── Home.png           # Screenshot: Landing page
+│   ├── HowTo.png          # Screenshot: Instructions
+│   ├── Quiz.png           # Screenshot: Quiz interface
+│   └── Result.png         # Screenshot: Results page
 ├── 📁 scripts/
-│   ├── quiz.js          # Main quiz logic and navigation
-│   ├── questions.js     # Question database (30+ questions)
-│   └── script.js        # Utility functions and results rendering
+│   ├── quiz.js            # Main quiz logic and navigation
+│   ├── questions.js       # Question database (30+ questions)
+│   └── script.js          # Utility functions and results rendering
 ├── 📁 styles/
-│   └── style.css        # Complete styling with responsive design
+│   └── style.css          # Complete styling with responsive design
 ├── 📁 validation-reports/
-│   ├── Home.png         # Screenshot: Landing page
-│   ├── HowTo.png        # Screenshot: Instructions
-│   ├── Quiz.png         # Screenshot: Quiz interface
-│   └── Result.png       # Screenshot: Results page
-├── .gitignore           # Git ignore rules
-├── favicon.ico          # Site favicon
-├── index.html           # Landing page
-├── howto.html           # Instructions page
-├── quiz.html            # Quiz interface
-├── results.html         # Results display
-└── README.md            # This file with all important information about the project
+│   ├── css-validation.md  # css validation report
+│   ├── fix-log.md         # log for fixing the warnings and errors
+│   ├── html-validation.md # html validation report
+│   └── js-validation.md   # js validation report
+├── .gitignore             # Git ignore rules
+├── favicon.ico            # Site favicon
+├── index.html             # Landing page
+├── howto.html             # Instructions page
+├── quiz.html              # Quiz interface
+├── results.html           # Results display
+└── README.md              # This file with all important information about the project
 ```
 ---
 

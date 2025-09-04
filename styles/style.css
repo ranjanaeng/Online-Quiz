@@ -1,14 +1,8 @@
 
 /* ===========================
-   Online Quiz – Global Styles
-   Color palette (max 3 colors):
-   - Text: #222222
-   - Accent: #2e7d32 (green)
-   - Background: #ffffff
+   Online Quiz App
    =========================== */
 /* Global Styles */
-
-
 
 :root {
   --text: #222222;
@@ -30,7 +24,6 @@ body {
   line-height: 1.6;
 }
 
-
 .skip-link {
   position: absolute;
   left: -9999px;
@@ -42,21 +35,10 @@ body {
   z-index: 1000;
 }
 
-/* .skip-link {
-  position: absolute;
-  top: -40px; 
-  left: 0;
-  background: #000;
-  color: #fff;
-  padding: 8px;
-  z-index: 100;
-} */
-
 .skip-link:focus {
   left: 0.5rem;
   top: 0; 
 }
-
 
 .site-header, .site-footer {
   border-bottom: 1px solid #ddd;
@@ -82,7 +64,6 @@ body {
   justify-content: space-between;
   gap: 1rem;
 }
-
 
 .brand {
   display: inline-flex;
@@ -184,7 +165,6 @@ body {
 
 
 /* howto.html styles */
-/* Steps list */
 .steps {
   padding-left: 1.2rem;
 }
@@ -192,7 +172,7 @@ body {
 /* end howto.html styles */
 
 /* quiz.html styles */
-/* Accessibility helpers */
+
 .visually-hidden {
   position: absolute !important;
   height: 1px; width: 1px;
@@ -271,9 +251,7 @@ body {
 /* end quiz.html styles */
 
 
-
 /* results.html styles */
-/* Summary & Breakdown */
 .summary {
   padding: 1rem;
   border: 1px solid #e8e8e8;
@@ -298,14 +276,15 @@ body {
 }
 
 .tag.ok {
-  background: rgba(46, 125, 50, 0.12);
-  color: var(--accent);
+  background: var(--accent);
+  color: #fff;
 }
 
 .tag.bad {
   background: #fff;
   color: var(--text);
   border-style: dashed;
+  font-weight: bold;
 }
 /* end results.html styles */
 
